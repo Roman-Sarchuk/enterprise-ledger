@@ -60,7 +60,7 @@ export function CategoryUpsertDialog(props: Props) {
       if (!isEdit) {
         const v = values as CategoryCreateValues;
         await createMutation.mutateAsync({ name: v.name, type: v.type, icon: v.icon });
-        toast.success("Category created");
+        toast.success("Категорію створено");
       } else {
         const v = values as CategoryUpdateValues;
         await updateMutation.mutateAsync({
@@ -69,7 +69,7 @@ export function CategoryUpsertDialog(props: Props) {
           type: v.type,
           icon: v.icon,
         });
-        toast.success("Category updated");
+        toast.success("Категорію оновлено");
       }
       props.onOpenChange(false);
     } catch (e) {
@@ -81,12 +81,12 @@ export function CategoryUpsertDialog(props: Props) {
     <Dialog open={props.open} onOpenChange={props.onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{isEdit ? "Edit category" : "New category"}</DialogTitle>
+          <DialogTitle>{isEdit ? "Редагувати категорію" : "Нова категорія"}</DialogTitle>
         </DialogHeader>
 
         <form className="grid gap-5" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-3">
-            <Label htmlFor="category-name">Name</Label>
+            <Label htmlFor="category-name">Назва</Label>
             <Input id="category-name" {...form.register("name")} aria-invalid={!!form.formState.errors.name} />
             {form.formState.errors.name?.message ? (
               <p className="text-xs text-destructive">{String(form.formState.errors.name.message)}</p>
@@ -94,18 +94,18 @@ export function CategoryUpsertDialog(props: Props) {
           </div>
 
           <div className="grid gap-3">
-            <Label>Type</Label>
+            <Label>Тип</Label>
             <Select
               value={form.watch("type")}
               onValueChange={(v) => form.setValue("type", v as CategoryType, { shouldValidate: true })}
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select type" />
+                <SelectValue placeholder="Виберіть тип" />
               </SelectTrigger>
               <SelectContent>
                 {categoryTypes.map((t) => (
                   <SelectItem key={t} value={t}>
-                    {t}
+                    {t === "income" ? "Дохід" : "Витрата"}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -116,21 +116,21 @@ export function CategoryUpsertDialog(props: Props) {
           </div>
 
           <div className="grid gap-3">
-            <Label htmlFor="category-icon">Icon (emoji)</Label>
+            <Label htmlFor="category-icon">Іконка (емодзі)</Label>
             <Input id="category-icon" maxLength={8} {...form.register("icon")} aria-invalid={!!form.formState.errors.icon} />
             {form.formState.errors.icon?.message ? (
               <p className="text-xs text-destructive">{String(form.formState.errors.icon.message)}</p>
             ) : (
-              <p className="text-xs text-muted-foreground">Backend expects a valid emoji.</p>
+              <p className="text-xs text-muted-foreground">Сервер очікує коректне емодзі.</p>
             )}
           </div>
 
           <DialogFooter>
             <Button type="button" variant="outline" onClick={() => props.onOpenChange(false)} disabled={pending}>
-              Cancel
+              Скасувати
             </Button>
             <Button type="submit" disabled={pending}>
-              {pending ? "Saving…" : "Save"}
+              {pending ? "Зберігаємо…" : "Зберегти"}
             </Button>
           </DialogFooter>
         </form>

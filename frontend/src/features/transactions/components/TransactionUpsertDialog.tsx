@@ -118,7 +118,7 @@ export function TransactionUpsertDialog(props: Props) {
     try {
       if (!isEdit) {
         if (!values.accountId) {
-          form.setError("accountId", { message: "Account is required" });
+          form.setError("accountId", { message: "Обов’язково виберіть рахунок" });
           return;
         }
 
@@ -128,7 +128,7 @@ export function TransactionUpsertDialog(props: Props) {
           amount: values.amount,
           description: values.description,
         });
-        toast.success("Transaction created");
+        toast.success("Транзакцію створено");
       } else {
         await updateMutation.mutateAsync({
           id: props.transaction.id,
@@ -136,7 +136,7 @@ export function TransactionUpsertDialog(props: Props) {
           amount: values.amount,
           description: values.description,
         });
-        toast.success("Transaction updated");
+        toast.success("Транзакцію оновлено");
       }
 
       props.onOpenChange(false);
@@ -145,11 +145,11 @@ export function TransactionUpsertDialog(props: Props) {
     }
   }
 
-  const submitLabel = isEdit ? "Save" : "Create";
+  const submitLabel = isEdit ? "Зберегти" : "Створити";
 
   const amountHint = isEdit
-    ? "Enter amount (negative ok; expense is derived by category type)."
-    : "Amount sign is UI-only; backend stores positive amounts.";
+    ? "Введіть суму (можна зі знаком мінус; тип витрати визначається категорією)."
+    : "Знак суми потрібен лише у UI; сервер зберігає позитивні значення.";
 
   const accounts = accountsQuery.data?.accounts ?? [];
 
@@ -157,19 +157,19 @@ export function TransactionUpsertDialog(props: Props) {
     <Dialog open={props.open} onOpenChange={props.onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{isEdit ? "Edit transaction" : "New transaction"}</DialogTitle>
+          <DialogTitle>{isEdit ? "Редагувати транзакцію" : "Нова транзакція"}</DialogTitle>
         </DialogHeader>
 
         <form className="grid gap-5" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-3">
-            <Label>Account</Label>
+            <Label>Рахунок</Label>
             <Select
               value={form.watch("accountId") ?? ""}
               onValueChange={(v) => form.setValue("accountId", v, { shouldValidate: true })}
               disabled={isEdit || accountsQuery.isPending}
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select account" />
+                <SelectValue placeholder="Виберіть рахунок" />
               </SelectTrigger>
               <SelectContent>
                 {accounts.map((a: Account) => (
@@ -185,13 +185,13 @@ export function TransactionUpsertDialog(props: Props) {
           </div>
 
           <div className="grid gap-3">
-            <Label>Category</Label>
+            <Label>Категорія</Label>
             <Select
               value={form.watch("categoryId") ?? ""}
               onValueChange={(v) => form.setValue("categoryId", v, { shouldValidate: true })}
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select category" />
+                <SelectValue placeholder="Виберіть категорію" />
               </SelectTrigger>
               <SelectContent>
                 {categories.map((c) => (
@@ -207,7 +207,7 @@ export function TransactionUpsertDialog(props: Props) {
           </div>
 
           <div className="grid gap-3">
-            <Label htmlFor="amount">Amount</Label>
+            <Label htmlFor="amount">Сума</Label>
             <Input
               id="amount"
               inputMode="decimal"
@@ -224,13 +224,13 @@ export function TransactionUpsertDialog(props: Props) {
           </div>
 
           <div className="grid gap-3">
-            <Label htmlFor="description">Description (optional)</Label>
+            <Label htmlFor="description">Опис (необов’язково)</Label>
             <Input id="description" {...form.register("description")} />
           </div>
 
           <DialogFooter>
             <Button type="submit" disabled={pending}>
-              {pending ? "Saving…" : submitLabel}
+              {pending ? "Зберігаємо…" : submitLabel}
             </Button>
           </DialogFooter>
         </form>

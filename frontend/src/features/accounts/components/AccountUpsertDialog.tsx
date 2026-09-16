@@ -65,11 +65,11 @@ export function AccountUpsertDialog(props: Props) {
       if (!isEdit) {
         const v = values as AccountCreateValues;
         await createMutation.mutateAsync({ name: v.name, currency: v.currency });
-        toast.success("Account created");
+        toast.success("Рахунок створено");
       } else {
         const v = values as AccountUpdateValues;
         await updateMutation.mutateAsync({ id: props.account.id, name: v.name, currency: v.currency });
-        toast.success("Account updated");
+        toast.success("Рахунок оновлено");
       }
       props.onOpenChange(false);
     } catch (e) {
@@ -81,12 +81,12 @@ export function AccountUpsertDialog(props: Props) {
     <Dialog open={props.open} onOpenChange={props.onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{isEdit ? "Edit account" : "New account"}</DialogTitle>
+          <DialogTitle>{isEdit ? "Редагувати рахунок" : "Новий рахунок"}</DialogTitle>
         </DialogHeader>
 
         <form className="grid gap-5" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-3">
-            <Label htmlFor="account-name">Name</Label>
+            <Label htmlFor="account-name">Назва</Label>
             <Input id="account-name" {...form.register("name")} aria-invalid={!!form.formState.errors.name} />
             {form.formState.errors.name?.message ? (
               <p className="text-xs text-destructive">{String(form.formState.errors.name.message)}</p>
@@ -94,14 +94,14 @@ export function AccountUpsertDialog(props: Props) {
           </div>
 
           <div className="grid gap-3">
-            <Label>Currency</Label>
+            <Label>Валюта</Label>
             <Controller
               control={form.control}
               name="currency"
               render={({ field }) => (
                 <Select value={field.value} onValueChange={(v) => field.onChange(v as Currency)}>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select currency" />
+                    <SelectValue placeholder="Виберіть валюту" />
                   </SelectTrigger>
                   <SelectContent>
                     {currencies.map((c) => (
@@ -120,10 +120,10 @@ export function AccountUpsertDialog(props: Props) {
 
           <DialogFooter>
             <Button type="button" variant="outline" onClick={() => props.onOpenChange(false)} disabled={pending}>
-              Cancel
+              Скасувати
             </Button>
             <Button type="submit" disabled={pending}>
-              {pending ? "Saving…" : "Save"}
+              {pending ? "Зберігаємо…" : "Зберегти"}
             </Button>
           </DialogFooter>
         </form>

@@ -24,11 +24,11 @@ import type { AuthUser } from "@/store/authStore";
 import { useAuthStore } from "@/store/authStore";
 
 const updateNameSchema = z.object({
-  name: z.string().trim().min(1, "Name is required"),
+  name: z.string().trim().min(1, "Ім’я є обов’язковим"),
 });
 
 const deleteAccountSchema = z.object({
-  confirmName: z.string().trim().min(1, "Enter your name to confirm"),
+  confirmName: z.string().trim().min(1, "Введіть своє ім’я для підтвердження"),
 });
 
 type UpdateNameValues = z.infer<typeof updateNameSchema>;
@@ -82,7 +82,7 @@ export function SettingsPage() {
       const data = await updateMeMutation.mutateAsync(values);
       updateUser(data.user);
       form.reset({ name: data.user.name });
-      toast.success("Name updated");
+      toast.success("Ім’я оновлено");
     } catch (e) {
       toast.error(getApiErrorMessage(e));
     }
@@ -93,7 +93,7 @@ export function SettingsPage() {
     if (values.confirmName.trim() !== currentName) {
       deleteForm.setError("confirmName", {
         type: "validate",
-        message: "Entered name does not match your current name",
+        message: "Введене ім’я не збігається з поточним",
       });
       return;
     }
@@ -101,7 +101,7 @@ export function SettingsPage() {
     try {
       await deleteMeMutation.mutateAsync();
       logout();
-      toast.success("User deleted");
+      toast.success("Користувача видалено");
       navigate("/login", { replace: true });
     } catch (e) {
       toast.error(getApiErrorMessage(e));
@@ -116,24 +116,24 @@ export function SettingsPage() {
   return (
     <div className="page mx-auto w-full max-w-3xl">
       <div>
-        <h1 className="page-title">Settings</h1>
-        <p className="page-subtitle">Manage your profile and appearance preferences</p>
+        <h1 className="page-title">Налаштування</h1>
+        <p className="page-subtitle">Керуйте своїм профілем та параметрами зовнішнього вигляду</p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Profile</CardTitle>
-          <CardDescription>Your current account details</CardDescription>
+          <CardTitle>Профіль</CardTitle>
+          <CardDescription>Ваші поточні дані облікового запису</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-5">
           <div className="grid gap-3">
-            <Label htmlFor="profile-email">Email</Label>
+            <Label htmlFor="profile-email">Електронна пошта</Label>
             <Input id="profile-email" value={user?.email ?? ""} disabled readOnly />
           </div>
 
           <form className="grid gap-5" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid gap-3">
-              <Label htmlFor="profile-name">Name</Label>
+              <Label htmlFor="profile-name">Ім’я</Label>
               <Input
                 id="profile-name"
                 autoComplete="name"
@@ -147,7 +147,7 @@ export function SettingsPage() {
 
             <div className="flex justify-end">
               <Button type="submit" disabled={updateMeMutation.isPending || !form.formState.isDirty}>
-                {updateMeMutation.isPending ? "Saving..." : "Save name"}
+                {updateMeMutation.isPending ? "Зберігаємо..." : "Зберегти ім’я"}
               </Button>
             </div>
           </form>
@@ -156,19 +156,19 @@ export function SettingsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Theme</CardTitle>
-          <CardDescription>Choose how the app looks for you</CardDescription>
+          <CardTitle>Тема</CardTitle>
+          <CardDescription>Виберіть, як має виглядати застосунок для вас</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-3">
-          <Label htmlFor="theme-mode">Color mode</Label>
+          <Label htmlFor="theme-mode">Колірна тема</Label>
           <Select value={selectedTheme} onValueChange={(value) => setTheme(value)}>
             <SelectTrigger id="theme-mode" className="w-full sm:w-56">
-              <SelectValue placeholder="Select theme" />
+              <SelectValue placeholder="Виберіть тему" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="system">System</SelectItem>
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
+              <SelectItem value="system">Системна</SelectItem>
+              <SelectItem value="light">Світла</SelectItem>
+              <SelectItem value="dark">Темна</SelectItem>
             </SelectContent>
           </Select>
         </CardContent>
@@ -176,15 +176,15 @@ export function SettingsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Danger zone</CardTitle>
+          <CardTitle>Небезпечна зона</CardTitle>
           <CardDescription>
-            Deleting your account is permanent. Type your current name to confirm this action.
+            Видалення облікового запису є незворотнім. Введіть своє поточне ім’я для підтвердження.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form className="grid gap-5" onSubmit={deleteForm.handleSubmit(onDeleteSubmit)}>
             <div className="grid gap-3">
-              <Label htmlFor="confirm-delete-name">Type your name to confirm</Label>
+              <Label htmlFor="confirm-delete-name">Введіть своє ім’я для підтвердження</Label>
               <Input
                 id="confirm-delete-name"
                 autoComplete="off"
@@ -199,7 +199,7 @@ export function SettingsPage() {
 
             <div className="flex justify-end">
               <Button type="submit" variant="destructive" disabled={deleteMeMutation.isPending || !canDelete}>
-                {deleteMeMutation.isPending ? "Deleting..." : "Delete account"}
+                {deleteMeMutation.isPending ? "Видалення..." : "Видалити обліковий запис"}
               </Button>
             </div>
           </form>

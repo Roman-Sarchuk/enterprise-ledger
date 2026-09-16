@@ -54,15 +54,15 @@ export function PasswordResetPage() {
           <div className="inline-flex size-11 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
             <ShieldCheck className="size-5" />
           </div>
-          <CardTitle>Create a new password</CardTitle>
+          <CardTitle>Створіть новий пароль</CardTitle>
           <CardDescription>
-            Choose a new password for your account. The reset link is valid only for a short time.
+            Виберіть новий пароль для свого облікового запису. Посилання для скидання дійсне лише короткий час.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-1">
           <form className="grid gap-5" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid gap-3">
-              <Label htmlFor="password">New password</Label>
+              <Label htmlFor="password">Новий пароль</Label>
               <Input
                 id="password"
                 type="password"
@@ -79,7 +79,7 @@ export function PasswordResetPage() {
             </div>
 
             <div className="grid gap-3">
-              <Label htmlFor="confirmPassword">Confirm password</Label>
+              <Label htmlFor="confirmPassword">Підтвердження пароля</Label>
               <Input
                 id="confirmPassword"
                 type="password"
@@ -99,11 +99,11 @@ export function PasswordResetPage() {
               <Button type="button" variant="outline" asChild>
                 <Link to="/login">
                   <ArrowLeft className="mr-2 size-4" />
-                  Back to login
+                  Назад до входу
                 </Link>
               </Button>
               <Button type="submit" disabled={resetPasswordMutation.isPending}>
-                {resetPasswordMutation.isPending ? "Updating…" : "Update password"}
+                {resetPasswordMutation.isPending ? "Оновлюємо…" : "Оновити пароль"}
               </Button>
             </div>
           </form>

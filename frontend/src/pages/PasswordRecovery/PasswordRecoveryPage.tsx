@@ -51,15 +51,15 @@ export function PasswordRecoveryPage() {
           <div className="inline-flex size-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
             <Mail className="size-5" />
           </div>
-          <CardTitle>Password recovery</CardTitle>
+          <CardTitle>Відновлення пароля</CardTitle>
           <CardDescription>
-            Enter the email address linked to your account and we’ll send you a reset link.
+            Введіть електронну пошту, пов’язану з вашим обліковим записом, і ми надішлемо посилання для скидання.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-1">
           <form className="grid gap-5" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid gap-3">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Електронна пошта</Label>
               <Input
                 id="email"
                 type="email"
@@ -79,11 +79,11 @@ export function PasswordRecoveryPage() {
               <Button type="button" variant="outline" asChild>
                 <Link to="/login">
                   <ArrowLeft className="mr-2 size-4" />
-                  Back to login
+                  Назад до входу
                 </Link>
               </Button>
               <Button type="submit" disabled={forgotPasswordMutation.isPending}>
-                {forgotPasswordMutation.isPending ? "Sending…" : "Send reset link"}
+                {forgotPasswordMutation.isPending ? "Надсилаємо…" : "Надіслати посилання"}
               </Button>
             </div>
           </form>
