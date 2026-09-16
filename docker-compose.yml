@@ -19,7 +19,7 @@ services:
       - "3000:3000"
     environment:
       # ВАЖЛИВО: замість localhost пишемо назву сервісу - db
-      - MONGO_URI=mongodb://db:27017/enterprise_ledger
+      - MONGO_URI=mongodb://db:27017/enterprise_ledger?directConnection=true
       - PORT=3000
       - JWT_SECRET=super_secret_key_for_report
       - NODE_ENV=development
