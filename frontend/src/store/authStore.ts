@@ -25,7 +25,7 @@ type AuthState = {
   logout: () => void;
 };
 
-const STORAGE_KEY = "home-ledger.auth";
+const STORAGE_KEY = "enterprise-ledger.auth";
 
 function readPersistedAuth(): PersistedAuth | null {
   try {
