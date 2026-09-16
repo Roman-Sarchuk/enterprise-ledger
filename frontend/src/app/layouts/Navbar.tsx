@@ -50,7 +50,7 @@ export function Navbar() {
           <span className="inline-flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-[0_10px_24px_-16px_var(--color-ring)]">
             <Wallet className="size-5" />
           </span>
-          <span className="hidden text-sm font-semibold tracking-wide sm:inline">Home-ledger</span>
+          <span className="hidden text-sm font-semibold tracking-wide sm:inline">Enterprise-Ledger</span>
         </Link>
 
         <nav className="hidden items-center gap-1 rounded-full border border-border/80 bg-card/70 p-1 md:flex">
