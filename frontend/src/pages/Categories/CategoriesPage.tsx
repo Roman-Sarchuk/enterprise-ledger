@@ -33,17 +33,17 @@ export function CategoriesPage() {
     <div className="page">
       <div className="page-header">
         <div>
-          <h1 className="page-title">Categories</h1>
-          <p className="page-subtitle">Income and expense buckets</p>
+          <h1 className="page-title">Категорії</h1>
+          <p className="page-subtitle">Категорії доходів і витрат</p>
         </div>
 
         <div className="surface flex items-center gap-2 px-2 py-1.5">
           <Button variant="outline" disabled={!canPrev} onClick={() => setPage(page - 1)}>
-            Prev
+            Попередня
           </Button>
-          <div className="min-w-14 text-center text-sm text-muted-foreground">Page {page}</div>
+          <div className="min-w-14 text-center text-sm text-muted-foreground">Стор. {page}</div>
           <Button variant="outline" disabled={!canNext} onClick={() => setPage(page + 1)}>
-            Next
+            Наступна
           </Button>
         </div>
       </div>

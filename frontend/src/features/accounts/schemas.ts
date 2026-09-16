@@ -2,14 +2,14 @@ import { z } from "zod";
 import { currencies } from "@/features/accounts/types";
 
 export const accountCreateSchema = z.object({
-  name: z.string().min(1, "Name is required"),
+  name: z.string().min(1, "Назва є обов’язковою"),
   currency: z.enum(currencies),
 });
 
 export type AccountCreateValues = z.infer<typeof accountCreateSchema>;
 
 export const accountUpdateSchema = z.object({
-  name: z.string().min(1, "Name is required"),
+  name: z.string().min(1, "Назва є обов’язковою"),
   currency: z.enum(currencies),
 });
 

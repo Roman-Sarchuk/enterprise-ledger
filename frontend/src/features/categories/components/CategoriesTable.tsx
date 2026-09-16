@@ -35,14 +35,14 @@ export function CategoriesTable({ categories, isLoading, limit, onAddNew }: Prop
 
   async function onDelete(category: Category) {
     if (category.isSystem) {
-      toast.error("Default categories cannot be deleted");
+      toast.error("Типові категорії не можна видаляти");
       return;
     }
-    const ok = window.confirm(`Delete category "${category.name}"?`);
+    const ok = window.confirm(`Видалити категорію "${category.name}"?`);
     if (!ok) return;
     try {
       await deleteMutation.mutateAsync(category.id);
-      toast.success("Category deleted");
+      toast.success("Категорію видалено");
     } catch (e) {
       toast.error(getApiErrorMessage(e));
     }
@@ -51,17 +51,17 @@ export function CategoriesTable({ categories, isLoading, limit, onAddNew }: Prop
   return (
     <div className="grid gap-3">
       <Button variant="outline" className="justify-start border-dashed" onClick={onAddNew}>
-        + Add new category
+        + Додати нову категорію
       </Button>
 
       <div className="surface overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-0">Icon</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead className="w-0 text-right">Actions</TableHead>
+              <TableHead className="w-0">Іконка</TableHead>
+              <TableHead>Назва</TableHead>
+              <TableHead>Тип</TableHead>
+              <TableHead className="w-0 text-right">Дії</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -69,13 +69,13 @@ export function CategoriesTable({ categories, isLoading, limit, onAddNew }: Prop
             {isLoading ? (
               <TableRow>
                 <TableCell colSpan={4} className="py-10 text-center text-muted-foreground">
-                  Loading…
+                  Завантаження…
                 </TableCell>
               </TableRow>
             ) : !hasData ? (
               <TableRow>
                 <TableCell colSpan={4} className="py-10 text-center text-muted-foreground">
-                  No categories yet.
+                  Категорій ще немає.
                 </TableCell>
               </TableRow>
             ) : (
@@ -87,12 +87,12 @@ export function CategoriesTable({ categories, isLoading, limit, onAddNew }: Prop
                       {c.name}
                       {c.isSystem ? (
                         <span className="inline-flex items-center gap-1 rounded-md bg-muted px-2 py-0.5 text-xs text-muted-foreground">
-                          <Lock className="size-3" /> system
+                          <Lock className="size-3" /> системна
                         </span>
                       ) : null}
                     </div>
                   </TableCell>
-                  <TableCell className="capitalize">{c.type}</TableCell>
+                  <TableCell className="capitalize">{c.type === "income" ? "Дохід" : "Витрата"}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -112,7 +112,7 @@ export function CategoriesTable({ categories, isLoading, limit, onAddNew }: Prop
                           }}
                         >
                           <Pencil className="mr-2 size-4" />
-                          Edit
+                          Редагувати
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
@@ -122,7 +122,7 @@ export function CategoriesTable({ categories, isLoading, limit, onAddNew }: Prop
                           }}
                         >
                           <Trash2 className="mr-2 size-4" />
-                          Delete
+                          Видалити
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
@@ -135,7 +135,7 @@ export function CategoriesTable({ categories, isLoading, limit, onAddNew }: Prop
       </div>
 
       <p className="text-xs text-muted-foreground">
-        Showing {rows.length} of {limit} per page
+        Показано {rows.length} з {limit} на сторінці
       </p>
 
       {editCategory ? (

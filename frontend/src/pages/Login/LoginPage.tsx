@@ -46,7 +46,7 @@ export function LoginPage() {
         password: values.password,
       });
       loginSuccess({ user: data.user, token: data.token }, values.rememberMe);
-      toast.success("Welcome back");
+      toast.success("З поверненням!");
       navigate(from, { replace: true });
     } catch (e) {
       toast.error(getApiErrorMessage(e));
@@ -57,13 +57,13 @@ export function LoginPage() {
     <div className="auth-shell">
       <Card className="auth-card">
         <CardHeader>
-          <CardTitle>Login</CardTitle>
-          <CardDescription>Sign in to your account</CardDescription>
+          <CardTitle>Вхід</CardTitle>
+          <CardDescription>Увійдіть до свого облікового запису</CardDescription>
         </CardHeader>
         <CardContent className="space-y-1">
           <form className="grid gap-5" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid gap-3">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Електронна пошта</Label>
               <Input
                 id="email"
                 type="email"
@@ -79,7 +79,7 @@ export function LoginPage() {
             </div>
 
             <div className="grid gap-3">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Пароль</Label>
               <Input
                 id="password"
                 type="password"
@@ -106,7 +106,7 @@ export function LoginPage() {
                       onCheckedChange={(v) => field.onChange(v === true)}
                       onBlur={field.onBlur}
                     />
-                    <Label htmlFor="rememberMe">Remember me</Label>
+                    <Label htmlFor="rememberMe">Запам’ятати мене</Label>
                   </div>
                 )}
               />
@@ -114,7 +114,7 @@ export function LoginPage() {
                 to="/password-recovery"
                 className="text-foreground underline underline-offset-4 flex items-center justify-end" 
               >
-                <span>Forgot your password?</span>
+                <span>Забули пароль?</span>
               </Link>
             </div>
 
@@ -122,21 +122,21 @@ export function LoginPage() {
               <Button type="button" variant="outline" asChild>
                 <Link to="/">
                   <ArrowLeft className="mr-2 size-4" />
-                  Back to home
+                  Назад на головну
                 </Link>
               </Button>
               <Button type="submit" disabled={loginMutation.isPending}>
-                {loginMutation.isPending ? "Signing in…" : "Sign in"}
+                {loginMutation.isPending ? "Входимо…" : "Увійти"}
               </Button>
             </div>
 
             <p className="text-sm text-muted-foreground">
-              No account?{" "}
+              Немає облікового запису?{" "}
               <Link
                 to="/register"
                 className="text-foreground underline underline-offset-4"
               >
-                Create one
+                Створіть його
               </Link>
             </p>
           </form>

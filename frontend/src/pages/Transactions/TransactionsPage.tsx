@@ -79,12 +79,12 @@ export function TransactionsPage() {
   }, []);
 
   async function onDelete(tx: Transaction) {
-    const ok = window.confirm(`Delete transaction?`);
+    const ok = window.confirm(`Видалити транзакцію?`);
     if (!ok) return;
 
     try {
       await deleteMutation.mutateAsync(tx.id);
-      toast.success("Transaction deleted");
+      toast.success("Транзакцію видалено");
     } catch (e) {
       toast.error(getApiErrorMessage(e));
     }
@@ -99,11 +99,11 @@ export function TransactionsPage() {
     <div className="page">
       <div className="page-header items-start">
         <div>
-          <h1 className="page-title">Transactions</h1>
+          <h1 className="page-title">Транзакції</h1>
           <p className="page-subtitle">
             {accountId
-              ? accountQuery.data?.account.name ?? "Selected account"
-              : "All transactions"}
+              ? accountQuery.data?.account.name ?? "Вибраний рахунок"
+              : "Усі транзакції"}
           </p>
         </div>
 
@@ -116,16 +116,16 @@ export function TransactionsPage() {
             }}
           >
             <Plus className="mr-2 size-4" />
-            Add transaction
+            Додати транзакцію
           </Button>
         </div>
       </div>
 
       <div className="surface md:hidden">
         {txQuery.isLoading ? (
-          <div className="px-4 py-8 text-center text-sm text-muted-foreground">Loading…</div>
+          <div className="px-4 py-8 text-center text-sm text-muted-foreground">Завантаження…</div>
         ) : allTransactions.length === 0 ? (
-          <div className="px-4 py-8 text-center text-sm text-muted-foreground">No transactions yet.</div>
+          <div className="px-4 py-8 text-center text-sm text-muted-foreground">Транзакцій ще немає.</div>
         ) : (
           <div className="divide-y divide-border/70">
             {allTransactions.map((tx) => {
@@ -145,7 +145,7 @@ export function TransactionsPage() {
                     </p>
                   </div>
 
-                  <p className="text-sm text-muted-foreground">{tx.description || "No description"}</p>
+                  <p className="text-sm text-muted-foreground">{tx.description || "Без опису"}</p>
 
                   <div className="flex justify-end gap-2">
                     <Button
@@ -179,11 +179,11 @@ export function TransactionsPage() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-0">Date</TableHead>
-              <TableHead className="w-[1%]">Category</TableHead>
-              <TableHead>Description</TableHead>
-              <TableHead className="w-[1%] text-right">Amount</TableHead>
-              <TableHead className="w-0 text-right">Actions</TableHead>
+              <TableHead className="w-0">Дата</TableHead>
+              <TableHead className="w-[1%]">Категорія</TableHead>
+              <TableHead>Опис</TableHead>
+              <TableHead className="w-[1%] text-right">Сума</TableHead>
+              <TableHead className="w-0 text-right">Дії</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -191,13 +191,13 @@ export function TransactionsPage() {
             {txQuery.isLoading ? (
               <TableRow>
                 <TableCell colSpan={5} className="py-10 text-center text-muted-foreground">
-                  Loading…
+                  Завантаження…
                 </TableCell>
               </TableRow>
             ) : allTransactions.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={5} className="py-10 text-center text-muted-foreground">
-                  No transactions yet.
+                  Транзакцій ще немає.
                 </TableCell>
               </TableRow>
             ) : (
@@ -269,10 +269,10 @@ export function TransactionsPage() {
             onClick={() => void txQuery.fetchNextPage()}
             disabled={txQuery.isFetchingNextPage}
           >
-            {txQuery.isFetchingNextPage ? "Loading…" : "Load more"}
+            {txQuery.isFetchingNextPage ? "Завантаження…" : "Завантажити ще"}
           </Button>
         ) : txQuery.data ? (
-          <span className="text-sm text-muted-foreground">End of list</span>
+          <span className="text-sm text-muted-foreground">Кінець списку</span>
         ) : null}
       </div>
 

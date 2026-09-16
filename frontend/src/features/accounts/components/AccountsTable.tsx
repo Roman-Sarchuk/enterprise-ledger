@@ -36,11 +36,11 @@ export function AccountsTable({ accounts, isLoading, limit, onAddNew }: Props) {
   const hasData = rows.length > 0;
 
   async function onDelete(account: Account) {
-    const ok = window.confirm(`Delete account "${account.name}"? This will also delete related transactions.`);
+    const ok = window.confirm(`Видалити рахунок "${account.name}"? Разом із ним буде видалено пов’язані транзакції.`);
     if (!ok) return;
     try {
       await deleteMutation.mutateAsync(account.id);
-      toast.success("Account deleted");
+      toast.success("Рахунок видалено");
     } catch (e) {
       toast.error(getApiErrorMessage(e));
     }
@@ -53,17 +53,17 @@ export function AccountsTable({ accounts, isLoading, limit, onAddNew }: Props) {
         className="justify-start border-dashed"
         onClick={onAddNew}
       >
-        + Add new account
+        + Додати новий рахунок
       </Button>
 
       <div className="surface overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Balance</TableHead>
-              <TableHead>Currency</TableHead>
-              <TableHead className="w-0 text-right">Actions</TableHead>
+              <TableHead>Назва</TableHead>
+              <TableHead>Баланс</TableHead>
+              <TableHead>Валюта</TableHead>
+              <TableHead className="w-0 text-right">Дії</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -71,13 +71,13 @@ export function AccountsTable({ accounts, isLoading, limit, onAddNew }: Props) {
             {isLoading ? (
               <TableRow>
                 <TableCell colSpan={4} className="py-10 text-center text-muted-foreground">
-                  Loading…
+                  Завантаження…
                 </TableCell>
               </TableRow>
             ) : !hasData ? (
               <TableRow>
                 <TableCell colSpan={4} className="py-10 text-center text-muted-foreground">
-                  No accounts yet. Create your first one.
+                  Ще немає рахунків. Створіть перший.
                 </TableCell>
               </TableRow>
             ) : (
@@ -110,7 +110,7 @@ export function AccountsTable({ accounts, isLoading, limit, onAddNew }: Props) {
                           }}
                         >
                           <Pencil className="mr-2 size-4" />
-                          Edit
+                          Редагувати
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           onSelect={() => {
@@ -118,7 +118,7 @@ export function AccountsTable({ accounts, isLoading, limit, onAddNew }: Props) {
                           }}
                         >
                           <BarChart3 className="mr-2 size-4" />
-                          Analytics
+                          Аналітика
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
@@ -128,7 +128,7 @@ export function AccountsTable({ accounts, isLoading, limit, onAddNew }: Props) {
                           }}
                         >
                           <Trash2 className="mr-2 size-4" />
-                          Delete
+                          Видалити
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
@@ -141,7 +141,7 @@ export function AccountsTable({ accounts, isLoading, limit, onAddNew }: Props) {
       </div>
 
       <p className="text-xs text-muted-foreground">
-        Showing {rows.length} of {limit} per page
+        Показано {rows.length} з {limit} на сторінці
       </p>
 
       {editAccount ? (

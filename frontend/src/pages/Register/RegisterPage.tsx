@@ -46,23 +46,23 @@ export function RegisterPage() {
     <div className="auth-shell">
       <Card className="auth-card">
         <CardHeader>
-          <CardTitle>Create account</CardTitle>
-          <CardDescription>Start tracking your finances</CardDescription>
+          <CardTitle>Створення облікового запису</CardTitle>
+          <CardDescription>Почніть відстежувати свої фінанси</CardDescription>
         </CardHeader>
         <CardContent className="space-y-1">
           <form className="grid gap-5" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid gap-3">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">Ім’я</Label>
               <Input id="name" autoComplete="name" {...form.register("name")} />
             </div>
 
             <div className="grid gap-3">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Електронна пошта</Label>
               <Input id="email" type="email" autoComplete="email" {...form.register("email")} />
             </div>
 
             <div className="grid gap-3">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Пароль</Label>
               <Input id="password" type="password" autoComplete="new-password" {...form.register("password")} />
             </div>
 
@@ -77,7 +77,7 @@ export function RegisterPage() {
                     onCheckedChange={(v) => field.onChange(v === true)}
                     onBlur={field.onBlur}
                   />
-                  <Label htmlFor="rememberMe">Remember me</Label>
+                  <Label htmlFor="rememberMe">Запам’ятати мене</Label>
                 </div>
               )}
             />
@@ -86,18 +86,18 @@ export function RegisterPage() {
               <Button type="button" variant="outline" asChild>
                 <Link to="/">
                   <ArrowLeft className="mr-2 size-4" />
-                  Back to home
+                  Назад на головну
                 </Link>
               </Button>
               <Button type="submit" disabled={registerMutation.isPending}>
-                {registerMutation.isPending ? "Creating…" : "Create account"}
+                {registerMutation.isPending ? "Створюємо…" : "Створити обліковий запис"}
               </Button>
             </div>
 
             <p className="text-sm text-muted-foreground">
-              Already have an account?{" "}
+              Вже маєте обліковий запис?{" "}
               <Link to="/login" className="text-foreground underline underline-offset-4">
-                Sign in
+                Увійти
               </Link>
             </p>
           </form>

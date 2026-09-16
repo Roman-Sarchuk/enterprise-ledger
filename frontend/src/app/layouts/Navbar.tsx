@@ -21,10 +21,10 @@ import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/store/authStore";
 
 const navItems = [
-  { to: "/accounts", label: "Accounts" },
-  { to: "/categories", label: "Categories" },
-  { to: "/transactions", label: "Transactions" },
-  { to: "/analytics", label: "Analytics" },
+  { to: "/accounts", label: "Рахунки" },
+  { to: "/categories", label: "Категорії" },
+  { to: "/transactions", label: "Транзакції" },
+  { to: "/analytics", label: "Аналітика" },
 ] as const;
 
 export function Navbar() {
@@ -33,7 +33,7 @@ export function Navbar() {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
 
-  const userLabel = useMemo(() => user?.name || "User", [user?.name]);
+  const userLabel = useMemo(() => user?.name || "Користувач", [user?.name]);
 
   const linkClassName = ({ isActive }: { isActive: boolean }) =>
     cn(
@@ -75,7 +75,7 @@ export function Navbar() {
                 }}
               >
                 <Settings className="mr-2 size-4" />
-                Settings
+                Налаштування
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
@@ -86,7 +86,7 @@ export function Navbar() {
                 }}
               >
                 <LogOut className="mr-2 size-4" />
-                Logout
+                Вийти
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -99,7 +99,7 @@ export function Navbar() {
             </DialogTrigger>
             <DialogContent className="surface p-0">
               <DialogHeader className="px-4 pt-4">
-                <DialogTitle>Menu</DialogTitle>
+                <DialogTitle>Меню</DialogTitle>
               </DialogHeader>
               <div className="flex flex-col gap-1 px-2 pb-4">
                 {navItems.map((item) => (
@@ -127,7 +127,7 @@ export function Navbar() {
                   }}
                 >
                   <Settings className="mr-2 size-4" />
-                  Settings
+                  Налаштування
                 </Button>
 
                 <Button
@@ -140,7 +140,7 @@ export function Navbar() {
                   }}
                 >
                   <LogOut className="mr-2 size-4" />
-                  Logout
+                  Вийти
                 </Button>
               </div>
             </DialogContent>
