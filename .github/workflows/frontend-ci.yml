@@ -1,0 +1,40 @@
+name: Frontend CI
+
+on:
+  push:
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend-ci.yml'
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend-ci.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      # Opt into Node.js 24 for JavaScript actions to avoid Node 20 deprecation
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+    defaults:
+      run:
+        working-directory: ./frontend # Specify the working directory
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Build
+        run: npm run build

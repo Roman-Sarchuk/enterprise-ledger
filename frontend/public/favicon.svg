@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="wallet-bg-gradient" x1="16" y1="16" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3eb0b2" />
+      <stop offset="1" stop-color="#228b8c" />
+    </linearGradient>
+  </defs>
+
+  <circle cx="32" cy="32" r="28" fill="url(#wallet-bg-gradient)" />
+
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    
+    <path d="M19 24 V21 C19 19.895 19.895 19 21 19 H41 C42.105 19 43 19.895 43 21 V24" />
+    
+    <path d="M45 29 V26 C45 24.895 44.105 24 43 24 H19 C17.895 24 17 24.895 17 26 V42 C17 43.105 17.895 44 19 44 H43 C44.105 44 45 43.105 45 42 V37" />
+    
+    <path d="M45 29 H41 C39.895 29 39 29.895 39 31 V35 C39 36.105 39.895 37 41 37 H45" />
+    
+    <line x1="42" y1="33" x2="42.01" y2="33" stroke-width="2.5" />
+    
+  </g>
+</svg>
