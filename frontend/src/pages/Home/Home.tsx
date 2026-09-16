@@ -5,13 +5,12 @@ import {
   BarChart3,
   ShieldCheck,
   Sparkles,
-  Wallet,
   TrendingUp,
   PieChart,
   ReceiptText,
   Clock3,
+  Briefcase,
 } from "lucide-react";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import {
   Carousel,
   CarouselContent,
@@ -21,42 +20,38 @@ import {
 
 import { Button } from "@/components/ui/button";
 
-import accounts from "@/assets/accounts.png";
 import categories from "@/assets/categories.png";
 import transactions from "@/assets/transactions.png";
 import analyticsCircule from "@/assets/analytics-circule.png";
 import analyticsLiqudity from "@/assets/analytics-liqudity.png";
 import analyticsCashFlow from "@/assets/analytics-cash-flow.png";
 
-const images = [analyticsCircule, analyticsLiqudity, analyticsCashFlow, accounts, categories, transactions];
-
-const GITHUB_URL = "https://github.com/Roman-Sarchuk/Home-ledger";
-const LINKEDIN_URL = "https://www.linkedin.com/in/roman-sarchuk-267102323/";
+const images = [analyticsCircule, analyticsLiqudity, analyticsCashFlow, categories, transactions];
 
 const FEATURES = [
   {
     icon: BarChart3,
     color: "sky",
-    title: "Analytics without the chaos",
-    desc: "Weekly and monthly income and expense trends in one clear view.",
+    title: "Корпоративна аналітика",
+    desc: "Тижневі та місячні тренди операційних витрат і доходів у єдиному дашборді.",
   },
   {
     icon: ShieldCheck,
     color: "emerald",
-    title: "Secure access",
-    desc: "Protected sign-in and private data available only to your account.",
+    title: "Enterprise-безпека",
+    desc: "Захищений доступ за допомогою JWT-токенів та ізольовані дані співробітників.",
   },
   {
     icon: PieChart,
     color: "amber",
-    title: "Categories that fit your style",
-    desc: "Flexible categories for daily spending, subscriptions, trips, or anything else.",
+    title: "Кастомні статті витрат",
+    desc: "Гнучка маршрутизація фінансів: оренда, податки, зарплатний фонд та логістика.",
   },
   {
-    icon: Wallet,
+    icon: Briefcase,
     color: "violet",
-    title: "All accounts in one place",
-    desc: "Cards, cash, and savings are visible at a glance, no switching between services.",
+    title: "Усі рахунки компанії",
+    desc: "Поточні рахунки ФОП, готівкові каси та резервні фонди в одному вікні.",
   },
 ];
 
@@ -92,26 +87,26 @@ const colorMap: Record<
 
 const STEPS = [
   {
-    icon: Wallet,
-    title: "Add accounts",
-    desc: "Create a card, cash, or savings account and set the starting balance.",
+    icon: Briefcase,
+    title: "Інтеграція рахунків",
+    desc: "Додайте банківські рахунки підприємства та встановіть початкове сальдо.",
   },
   {
     icon: ReceiptText,
-    title: "Record transactions",
-    desc: "Log income and expenses in 10 seconds with categories and notes.",
+    title: "Облік транзакцій",
+    desc: "Реєструйте операційні витрати та надходження за лічені секунди.",
   },
   {
     icon: TrendingUp,
-    title: "Track your progress",
-    desc: "See where spending grows and make decisions based on numbers.",
+    title: "Фінансовий моніторинг",
+    desc: "Аналізуйте рентабельність та приймайте рішення на основі точних даних.",
   },
 ];
 
 const QUICK_BENEFITS = [
-  "Free to start",
-  "Clear interface",
-  "Built for everyday use",
+  "Хмарна інфраструктура",
+  "Детальні звіти",
+  "Створено для бізнесу",
 ];
 
 function Home() {
@@ -123,10 +118,10 @@ function Home() {
         <div className="mx-auto flex h-16 items-center justify-between px-6">
           <div className="flex items-center gap-3">
             <span className="inline-flex size-9 items-center justify-center rounded-xl bg-linear-to-br from-primary to-primary/70 text-primary-foreground shadow-lg shadow-primary/25">
-              <Wallet className="size-4" />
+              <Briefcase className="size-4" />
             </span>
             <span className="font-heading text-base font-bold tracking-tight">
-              Home-ledger
+              Enterprise-Ledger
             </span>
           </div>
           <nav className="flex items-center gap-2.5">
@@ -136,7 +131,7 @@ function Home() {
               className="text-muted-foreground hover:text-foreground"
               asChild
             >
-                <Link to="/login">Sign in</Link>
+                <Link to="/login">Увійти</Link>
             </Button>
             <Button
               size="sm"
@@ -144,7 +139,7 @@ function Home() {
               asChild
             >
               <Link to="/register">
-                Sign up
+                Реєстрація
                 <ArrowRight className="ml-1.5 size-3.5" />
               </Link>
             </Button>
@@ -159,15 +154,15 @@ function Home() {
             <div className="space-y-7">
               <div style={{ animation: "fadeUp 0.45s 0.08s ease both" }}>
                 <h1 className="max-w-2xl font-heading text-3xl font-extrabold leading-tight tracking-tight text-balance md:text-3xl lg:text-[3rem]">
-                  Less chaos in your spending.
+                  Повний контроль над фінансами.
                   <span className="block bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-                    More confidence in every decision.
+                    Впевненість у кожному рішенні.
                   </span>
                 </h1>
                 <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                  Home-ledger helps you see the full picture of your money:
-                  accounts, categories, transaction history, and clear analytics
-                  in one place.
+                  Enterprise-Ledger допомагає бачити повну картину капіталу компанії: 
+                  корпоративні рахунки, операційні витрати, історія транзакцій та 
+                  глибока аналітика в єдиному захищеному порталі.
                 </p>
               </div>
 
@@ -181,7 +176,7 @@ function Home() {
                   asChild
                 >
                   <Link to="/register">
-                    Start for free
+                    Впровадити систему
                     <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                 </Button>
@@ -191,7 +186,7 @@ function Home() {
                   className="border-border/60 bg-background/70"
                   asChild
                 >
-                  <Link to="/login">Sign in to your account</Link>
+                  <Link to="/login">Корпоративний вхід</Link>
                 </Button>
               </div>
 
@@ -229,8 +224,6 @@ function Home() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-
-                {/* Show dots below the carousel */}
                 <CarouselDots />
               </Carousel>
             </div>
@@ -240,17 +233,17 @@ function Home() {
         <section className="border-t border-border/50 py-16 md:py-20">
           <div className="mb-12 text-center">
             <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary">
-              <Sparkles className="size-3.5" /> Features
+              <Sparkles className="size-3.5" /> Можливості
             </p>
             <h2 className="font-heading text-3xl font-bold tracking-tight text-balance md:text-5xl">
-              Everything you need for{" "}
+              Усе необхідне для{" "}
               <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-                financial control
+                управління бізнесом
               </span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-              Practical tools that genuinely help with day-to-day money
-              management.
+              Професійні інструменти, які допомагають оптимізувати ресурси 
+              та мінімізувати фінансові ризики підприємства.
             </p>
           </div>
 
@@ -280,10 +273,10 @@ function Home() {
         <section className="border-t border-border/50 py-16 md:py-20">
           <div className="mb-10 text-center">
             <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary">
-              <Clock3 className="size-3.5" /> How it works
+              <Clock3 className="size-3.5" /> Робочий процес
             </p>
             <h2 className="font-heading text-3xl font-bold tracking-tight md:text-5xl">
-              Three simple steps to financial order
+              Три кроки до фінансового порядку
             </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
@@ -315,21 +308,21 @@ function Home() {
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary">
-                <Wallet className="size-3.5" /> About the project
+                <Briefcase className="size-3.5" /> Про систему
               </p>
               <h2 className="font-heading text-3xl font-bold tracking-tight text-balance md:text-5xl">
-                Home-ledger<br />
+                Enterprise-Ledger<br />
                 <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-                  It's course project
+                  Внутрішній фінансовий портал
                 </span>
               </h2>
               <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                A web app for personal finance tracking: manage accounts,
-                transaction categories, view operation history, and explore
-                analytical reports.
+                Веб-додаток для корпоративного обліку фінансів: управління рахунками, 
+                статтями витрат, історією операцій та формування аналітичних звітів 
+                для керівництва компанії.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {["Node.js", "Express", "React", "TypeScript", "MongoDB"].map(
+                {["Node.js", "Express", "React", "TypeScript", "MongoDB", "Docker"].map(
                   (tech) => (
                     <span
                       key={tech}
@@ -342,59 +335,6 @@ function Home() {
               </div>
             </div>
 
-            <div className="relative rounded-2xl border border-border/50 bg-card/70 p-8 shadow-xl backdrop-blur">
-              <div className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-primary/4 to-transparent" />
-              <div className="relative">
-                <div className="mb-6 flex items-center gap-4">
-                  <div className="flex size-14 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-2xl font-bold text-primary">
-                    RS
-                  </div>
-                  <div>
-                    <p className="font-heading text-lg font-bold text-foreground">
-                            Roman Sarchuk
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                            Group PP-34 · Full-stack development
-                    </p>
-                  </div>
-                </div>
-                <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-                        The developer of this project is a student passionate about
-                        modern web technologies and building useful apps for real
-                        problems.
-                </p>
-                <div className="flex gap-3">
-                  <Button
-                    variant="outline"
-                    className="flex-1 gap-2 border-border/60 shadow-sm hover:-translate-y-px hover:shadow-md transition-all"
-                    asChild
-                  >
-                    <a
-                      href={GITHUB_URL}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      <FaGithub className="size-4" />
-                      GitHub
-                    </a>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="flex-1 gap-2 border-sky-500/30 bg-sky-500/5 text-sky-600 hover:bg-sky-500/10 hover:-translate-y-px hover:shadow-md transition-all"
-                    asChild
-                  >
-                    <a
-                      href={LINKEDIN_URL}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      <FaLinkedinIn className="size-4" />
-                      LinkedIn
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -404,17 +344,17 @@ function Home() {
             <div className="pointer-events-none absolute -right-20 -bottom-20 size-64 rounded-full bg-accent/15 blur-3xl" />
             <div className="relative">
               <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary">
-                <Sparkles className="size-3.5" /> Start today
+                <Sparkles className="size-3.5" /> Впровадження
               </p>
               <h2 className="font-heading text-3xl font-bold tracking-tight text-balance md:text-5xl">
-                Ready to take control of your finances{" "}
+                Готові оптимізувати облік{" "}
                 <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-                  today?
+                  вже сьогодні?
                 </span>
               </h2>
               <p className="mx-auto mt-4 mb-8 max-w-md text-muted-foreground">
-                Registration takes less than a minute. Start tracking income
-                and expenses right now.
+                Створіть захищений акаунт адміністратора та почніть вести 
+                корпоративний облік у сучасному інтерфейсі.
               </p>
               <Button
                 size="lg"
@@ -422,7 +362,7 @@ function Home() {
                 asChild
               >
                 <Link to="/register">
-                  Create a free account
+                  Зареєструвати компанію
                   <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
@@ -435,16 +375,16 @@ function Home() {
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-muted-foreground sm:flex-row">
           <div className="flex items-center gap-2.5">
             <span className="inline-flex size-7 items-center justify-center rounded-lg bg-primary/15">
-              <Wallet className="size-3.5 text-primary" />
+              <Briefcase className="size-3.5 text-primary" />
             </span>
             <span className="font-semibold text-foreground/70">
-              Home-ledger
+              Enterprise-Ledger
             </span>
             <span className="text-border">·</span>
             <span>{new Date().getFullYear()}</span>
           </div>
           <p className="text-xs">
-            Personal finance bookkeeping for everyday use
+            Корпоративна ERP-система фінансового обліку
           </p>
         </div>
       </footer>
