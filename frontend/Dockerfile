@@ -4,14 +4,15 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-# Збираємо продакшн-версію React-додатку
 RUN npm run build
 
 # Етап 2: Роздача статики (Serve)
 FROM nginx:alpine
-# Копіюємо зібрані файли з попереднього етапу в папку Nginx
+# Копіюємо зібрані файли
 COPY --from=build /app/dist /usr/share/nginx/html
-# Відкриваємо 80-й порт
+
+# Копіюємо наш кастомний конфіг Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
-# Запускаємо Nginx
 CMD ["nginx", "-g", "daemon off;"]
