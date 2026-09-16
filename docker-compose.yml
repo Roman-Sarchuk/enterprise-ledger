@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # 1. База даних MongoDB
+  db:
+    image: mongo:6.0
+    container_name: enterprise-mongo
+    command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # 2. Наш бекенд
+  backend:
+    build: ./backend
+    container_name: enterprise-backend
+    ports:
+      - "3000:3000"
+    environment:
+      # ВАЖЛИВО: замість localhost пишемо назву сервісу - db
+      - MONGO_URI=mongodb://db:27017/enterprise_ledger
+      - PORT=3000
+      - JWT_SECRET=super_secret_key_for_report
+      - NODE_ENV=development
+    depends_on:
+      - db
+
+  # 3. Наш фронтенд
+  frontend:
+    build: ./frontend
+    container_name: enterprise-frontend
+    ports:
+      - "5173:80" # Мапимо 80-й порт Nginx на звичний тобі 5173
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
