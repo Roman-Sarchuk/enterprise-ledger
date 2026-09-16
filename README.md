@@ -2,7 +2,7 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=32&duration=3000&pause=1000&color=10B981&center=true&vCenter=true&width=1000&lines=Full-stack+Finance+Tracker;React+19+%2B+Node.js+%2B+MongoDB;Smart+Analytics+%26+Tracking" />
 </p>
 
-# Home-ledger
+# Enterprise-ledger
 
 [![Frontend CI](https://github.com/Roman-Sarchuk/Home-ledger/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/Roman-Sarchuk/Home-ledger/actions/workflows/frontend-ci.yml)
 [![Backend CI](https://github.com/Roman-Sarchuk/Home-ledger/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/Roman-Sarchuk/Home-ledger/actions/workflows/backend-ci.yml)
